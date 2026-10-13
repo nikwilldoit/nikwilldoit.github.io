@@ -1,0 +1,1134 @@
+/*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+:root {
+
+  /**
+   * colors
+   */
+
+  --red-orange-color-wheel: hsl(17, 96%, 48%);
+  --middle-blue-green: hsl(167, 45%, 72%);
+  --smokey-black: hsl(0, 0%, 7%);
+  --spanish-gray: hsl(0, 0%, 60%);
+  --granite-gray: hsl(0, 0%, 40%);
+  --tan-crayola: hsl(27, 46%, 58%);
+  --light-gray: hsl(0, 0%, 80%);
+  --black_10: hsla(0, 0%, 0%, 0.1);
+  --black_25: hsla(0, 0%, 0%, 0.25);
+  --black_50: hsla(0, 0%, 0%, 0.4);
+  --black_70: hsla(0, 0%, 0%, 0.7);
+  --cultured: hsl(220, 16%, 96%);
+  --manatee: hsl(218, 11%, 65%);
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
+
+  /**
+   * typography
+   */
+
+  --ff-roboto: 'Roboto', sans-serif;
+  --ff-mr_de_haviland: 'Mr De Haviland', cursive;
+
+  --fs-1: 6rem;
+  --fs-2: 3rem;
+  --fs-3: 2rem;
+  --fs-4: 1.8rem;
+  --fs-5: 1.4rem;
+  --fs-6: 1.2rem;
+
+  --fw-700: 700;
+  --fw-500: 500;
+
+  /**
+   * spacing
+   */
+
+  --section-padding: 50px;
+
+  /**
+   * shadow
+   */
+
+  --shadow: 0 0 2px hsla(0, 0%, 0%, 0.2);
+
+  /**
+   * transition
+   */
+
+  --transition-1: 0.25s ease;
+  --transition-2: 0.5s ease;
+  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+  --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li { list-style: none; }
+
+a,
+img,
+span,
+input,
+button,
+ion-icon { display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { height: auto; }
+
+input,
+button {
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+input { width: 100%; }
+
+button { cursor: pointer; }
+
+ion-icon { pointer-events: none; }
+
+address { font-style: normal; }
+
+html {
+  font-family: var(--ff-roboto);
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 1.6rem;
+  line-height: 1.7;
+}
+
+body.active { overflow: hidden; }
+
+:focus-visible { outline-offset: 4px; }
+
+::placeholder { color: var(--manatee); }
+
+::-webkit-scrollbar { width: 10px; }
+
+::-webkit-scrollbar-track { background-color: hsl(0, 0%, 98%); }
+
+::-webkit-scrollbar-thumb { background-color: hsl(0, 0%, 80%); }
+
+::-webkit-scrollbar-thumb:hover { background-color: hsl(0, 0%, 70%); }
+
+
+
+
+
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
+
+.container { padding-inline: 15px; }
+
+.social-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.social-list {
+  display: flex;
+  gap: 30px;
+}
+
+.social-link { transition: var(--transition-1); }
+
+.social-link:is(:hover, :focus) { color: var(--tan-crayola); }
+
+.section { padding-block: var(--section-padding); }
+
+.img-holder {
+  aspect-ratio: var(--width) / var(--height);
+  background-color: var(--light-gray);
+  overflow: hidden;
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.h2,
+.h3 {
+  color: var(--smokey-black);
+  font-weight: var(--fw-500);
+  line-height: 1.4;
+}
+
+.h2 { font-size: var(--fs-2); }
+
+.h3 { font-size: var(--fs-3); }
+
+.grid-list {
+  display: grid;
+  gap: 35px;
+}
+
+.has-before {
+  position: relative;
+  z-index: 1;
+}
+
+.has-before::before {
+  content: "";
+  position: absolute;
+}
+
+
+
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #003366; /* Σκούρο μπλε φόντο */
+  padding: 20px 40px; /* Ικανό padding για άνεση */
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ελαφριά σκίαση για μοντέρνο look */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.active {
+  background-color: #ffffff; /* Λευκό φόντο όταν είναι ενεργό */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ενισχυμένη σκίαση όταν ενεργό */
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Μέγιστο πλάτος για ευθυγράμμιση */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 4rem; /* Μεγαλύτερο μέγεθος για το λογότυπο */
+  font-weight: bold;
+  color: #ffffff; /* Λευκό χρώμα για αντίθεση */
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  transition: color 0.3s ease; /* Ομαλή μετάβαση χρώματος */
+}
+
+.logo:hover,
+.logo:focus {
+  color: #ffcc00; /* Χρυσό χρώμα κατά hover/focus */
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Μεγαλύτερη απόσταση μεταξύ των items */
+  position: relative;
+}
+
+.navbar-list {
+  display: flex;
+  list-style: none;
+  margin: 0; /* Αφαίρεση περιθωρίου */
+  padding: 0; /* Αφαίρεση padding */
+  gap: 30px; /* Μεγαλύτερη απόσταση μεταξύ των items */
+}
+
+.navbar-item {
+  position: relative;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #ffffff; /* Λευκό χρώμα συνδέσμων για αντίθεση */
+  font-size: 1.8rem; /* Μεγαλύτερο μέγεθος για καλύτερη αναγνωσιμότητα */
+  font-weight: 600; /* Εντονότερη γραμματοσειρά */
+  padding: 12px 20px; /* Αυξημένο padding για καλύτερη αλληλεπίδραση */
+  border-radius: 8px; /* Ελαφρύς γύρος στις γωνίες */
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* Ομαλή μετάβαση χρώματος, background και κλίμακας */
+}
+
+.navbar-link:hover,
+.navbar-link:focus {
+  color: #003366; /* Σκούρο μπλε χρώμα κατά hover/focus */
+  background-color: #ffffff; /* Λευκό background κατά hover/focus */
+  transform: scale(1.1); /* Εφέ κλίμακας κατά hover/focus */
+}
+
+.header-action {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Μεγαλύτερη απόσταση μεταξύ των actions */
+}
+
+.header-action-btn {
+  font-size: 2rem; /* Μεγαλύτερο μέγεθος εικονιδίων για καλή ορατότητα */
+  color: #ffffff;
+  transition: color 0.3s ease, transform 0.3s ease; /* Ομαλή μετάβαση χρώματος και εφέ κλίμακας */
+}
+
+.header-action-btn:hover,
+.header-action-btn:focus {
+  color: #ffcc00; /* Χρυσό χρώμα κατά hover/focus */
+  transform: scale(1.2); /* Εφέ κλίμακας κατά hover/focus */
+}
+
+.header-action-btn .btn-badge {
+  background-color: #ffcc00; /* Χρυσό background για την ετικέτα */
+  color: #ffffff;
+  font-size: 0.9rem; /* Μεγαλύτερο μέγεθος ετικέτας */
+  font-weight: 600;
+  position: absolute;
+  top: -10px; /* Ρύθμιση θέσης */
+  right: -10px;
+  padding: 4px 8px; /* Αυξημένο padding */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*-----------------------------------*\
+  #NAVBAR
+\*-----------------------------------*/
+
+.navbar {
+  display: flex; /* Διατάξη σε σειρά */
+  gap: 30px; /* Μεγαλύτερη απόσταση μεταξύ των items */
+  margin-left: auto; /* Ωθήστε το navbar προς τα δεξιά */
+}
+
+/* Responsive Menu Icon */
+.menu-icon {
+  display: none; /* Κρυφό από προεπιλογή */
+  font-size: 2rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.menu-icon:hover,
+.menu-icon:focus {
+  color: #ffcc00; /* Χρυσό χρώμα κατά hover/focus */
+}
+
+/* Show menu icon on small screens */
+@media (max-width: 768px) {
+  .navbar {
+    display: none; /* Απόκρυψη του κλασικού μενού σε μικρές οθόνες */
+  }
+
+  .menu-icon {
+    display: block; /* Εμφάνιση του εικονιδίου μενού */
+  }
+
+  .navbar-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #003366;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    display: none; /* Κρυφό από προεπιλογή */
+  }
+
+  .navbar-mobile.active {
+    display: flex; /* Εμφάνιση του αναπτυσσόμενου μενού */
+  }
+
+  .navbar-mobile-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.6rem;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .navbar-mobile-link:hover,
+  .navbar-mobile-link:focus {
+    color: #003366;
+    background-color: #ffffff;
+  }
+}
+
+/*-----------------------------------*\
+  #OVERLAY
+\*-----------------------------------*/
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Μαύρο overlay με διαφάνεια */
+  z-index: 9; /* Ελαφρώς χαμηλότερο από το header */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease; /* Ομαλή μετάβαση opacity */
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #ABOUT
+\*-----------------------------------*/
+
+.about-wrapper {
+  background-color: #f4f8f9; /* Ελαφρύ μπλε γκρι φόντο */
+  padding: 100px 20px; /* Άνετο padding για καλύτερη προβολή */
+}
+
+.about {
+  text-align: center;
+}
+
+.about .section-title {
+  font-family: 'Poppins', sans-serif; /* Σύγχρονη γραμματοσειρά */
+  font-size: 4.5rem; /* Πολύ μεγαλύτερο μέγεθος για τον τίτλο */
+  font-weight: 700; /* Έντονη γραμματοσειρά */
+  color: #002d72; /* Σκούρο μπλε χρώμα τίτλου */
+  margin-bottom: 60px; /* Μεγαλύτερη απόσταση κάτω από τον τίτλο */
+  letter-spacing: 1px; /* Ελαφρύς διαστήματος μεταξύ των γραμμάτων */
+}
+
+.about .about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px; /* Απόσταση μεταξύ των στοιχείων */
+}
+
+.about .about-text {
+  max-width: 1000px; /* Μέγιστο πλάτος κειμένου */
+  margin: 0 auto; /* Κεντράρισμα κειμένου */
+  font-size: 2.0rem; /* Μεγαλύτερο μέγεθος γραμματοσειράς */
+  line-height: 1.9; /* Υψηλότερο line-height */
+  color: #333; /* Σκούρο γκρι κείμενο */
+  padding: 0 20px; /* Εξωτερικό padding για μικρές οθόνες */
+}
+
+.about .about-features {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* Απόσταση μεταξύ των χαρακτηριστικών */
+  flex-wrap: wrap; /* Σπάσιμο σε νέες γραμμές αν χρειάζεται */
+}
+
+.feature {
+  background: #ffffff; /* Λευκό φόντο */
+  padding: 50px; /* Άνετο padding */
+  border-radius: 12px; /* Στρογγυλές γωνίες */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Ελαφριά σκίαση */
+  text-align: center;
+  flex: 1 1 320px; /* Προσαρμογή με βάση το μέγεθος της οθόνης */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ομαλή μετάβαση για hover */
+  background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Ελαφρύ gradient για βάθος */
+  border: 1px solid #ddd; /* Ελαφρύ περίγραμμα για έμφαση */
+  padding: 60px; /* Μεγαλύτερο padding για άνεση */
+}
+
+.feature i {
+  font-size: 5rem; /* Πολύ μεγαλύτερο μέγεθος εικονίδιου */
+  color: #ff6f00; /* Ζεστό πορτοκαλί χρώμα εικονίδιων */
+  margin-bottom: 20px; /* Απόσταση κάτω από το εικονίδιο */
+}
+
+.feature h3 {
+  font-size: 2.8rem; /* Μεγαλύτερο μέγεθος τίτλου χαρακτηριστικού */
+  font-weight: 600;
+  color: #002d72; /* Σκούρο μπλε χρώμα */
+  margin-bottom: 15px; /* Απόσταση κάτω από τον τίτλο */
+  letter-spacing: 0.5px; /* Ελαφρύς διαστήματος μεταξύ των γραμμάτων */
+}
+
+.feature p {
+  font-size: 1.7rem; /* Μεγαλύτερο μέγεθος κειμένου για τα χαρακτηριστικά */
+  color: #666; /* Ελαφρύ γκρι κείμενο */
+}
+
+.feature:hover {
+  transform: translateY(-10px); /* Ελαφρύ ανύψωμα κατά hover */
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2); /* Δυνατότερη σκίαση κατά hover */
+  background: linear-gradient(145deg, #ffffff, #e0e0e0); /* Ελαφρύ gradient κατά hover */
+  border: 1px solid #bbb; /* Ελαφρύ περίγραμμα κατά hover */
+}
+
+
+
+
+
+
+/*-----------------------------------*\
+  #PRODUCT
+\*-----------------------------------*/
+
+.product .section-title { 
+  text-align: center; 
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #444444;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-bottom: 3px solid #FFD700;
+  display: inline-block;
+  padding-bottom: 12px;
+  background: linear-gradient(90deg, #FFD700 0%, #FF8C00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter-btn-list {
+  margin-block: 20px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn-item {
+  position: relative;
+  display: flex;
+}
+
+.filter-btn-item:not(:last-child)::after {
+  content: "|";
+  margin-inline: 20px;
+  color: #AAAAAA;
+}
+
+.filter-btn { 
+  transition: var(--transition-1); 
+  color: #777777;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #F5F5F5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn.active { 
+  color: #FFD700;
+  background-color: #333333;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.product-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  height: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  background-image: linear-gradient(to bottom right, #F5F5F5, #E8E8E8);
+  background-attachment: fixed; /* Parallax effect */
+}
+
+.product-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 3px solid #FFD700;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card .card-banner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.product-card:hover .card-banner {
+  background-color: #fafafa;
+}
+
+.product-card .card-banner img {
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  margin: auto;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover .card-banner img {
+  transform: scale(1.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.product-card .card-title {
+  color: #333333;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-block: 20px 7px;
+  transition: color 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.product-card .card-title:is(:hover, :focus) { 
+  color: #FFD700;
+}
+
+.product-card .card-price {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  color: #555555;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: auto;
+  background: linear-gradient(to right, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card .card-price .del { 
+  color: #888888;
+  font-weight: normal;
+  font-size: 0.95em;
+  text-decoration: line-through;
+}
+
+.product-card .card-action-list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 120%);
+  display: flex;
+  gap: 20px;
+  opacity: 0;
+  transition: var(--transition-2);
+}
+
+.product-card .card-banner:is(:hover, :focus-within) .card-action-list {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.product-card .card-action-btn {
+  background-color: #FFD700;
+  color: #ffffff;
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 7px 20px rgba(255, 215, 0, 0.5);
+}
+
+.product-card .card-action-btn:is(:hover, :focus) { 
+  background-color: #FFB700;
+  transform: scale(1.15);
+}
+
+.product-card .badge-list {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.product-card .badge {
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  line-height: 50px;
+  margin-block-end: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #FF4500, #FF6347);
+}
+
+.product-card .badge.cyan { 
+  background: linear-gradient(45deg, #00CED1, #20B2AA); 
+}
+
+.product-card .card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 15px;
+  font-size: 1.2em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.product-card::after {
+  content: 'NEW';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background-color: #32CD32;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+  padding: 6px 12px;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.product-list > * { 
+  display: none; 
+}
+
+.product-list[data-filter="all"] > *,
+.product-list[data-filter="accessory"] > .accessory,
+.product-list[data-filter="decoration"] > .decoration,
+.product-list[data-filter="furniture"] > .furniture {
+  display: block;
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #BLOG
+\*-----------------------------------*/
+
+.blog {
+  background-color: #fafafa; /* Ελαφρύ γκρι φόντο για όλη την ενότητα */
+  padding: 60px 20px; /* Άνετο padding γύρω από το περιεχόμενο */
+  text-align: center; /* Κεντράρισμα του κειμένου */
+}
+
+.blog .title-wrapper {
+  margin-bottom: 50px; /* Απόσταση κάτω από τον τίτλο */
+}
+
+.blog .section-title {
+  font-family: 'Poppins', sans-serif; /* Σύγχρονη γραμματοσειρά */
+  font-size: 3rem; /* Μεγαλύτερο μέγεθος τίτλου */
+  font-weight: 700; /* Έντονη γραμματοσειρά */
+  color: #333; /* Σκούρο γκρι χρώμα τίτλου */
+  margin: 0; /* Αφαίρεση προεπιλεγμένων περιθωρίων */
+  text-transform: uppercase; /* Μεγάλους χαρακτήρες */
+  letter-spacing: 1px; /* Απόσταση μεταξύ των χαρακτήρων */
+}
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive layout */
+  gap: 20px; /* Απόσταση μεταξύ των καρτών */
+  justify-content: center; /* Κεντράρισμα των καρτών */
+}
+
+.blog-card {
+  background: #ffffff; /* Λευκό φόντο κάρτας */
+  border-radius: 15px; /* Στρογγυλές γωνίες */
+  overflow: hidden; /* Κόψιμο περιεχομένου που ξεφεύγει */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ελαφριά σκίαση */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; /* Ομαλές μεταβάσεις */
+  position: relative; /* Για απόλυτη τοποθέτηση περιεχομένου */
+  overflow: hidden; /* Διασφαλίζει ότι το περιεχόμενο δεν ξεφεύγει */
+}
+
+.blog-card:hover {
+  transform: translateY(-10px); /* Ελαφρύ ανύψωμα κατά hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Δυνατότερη σκίαση κατά hover */
+  border: 2px solid #ff6f00; /* Χρωματιστό περίγραμμα κατά hover */
+}
+
+.card-banner {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid #ff6f00; /* Χρωματιστή γραμμή στο κάτω μέρος της εικόνας */
+  border-radius: 15px 15px 0 0; /* Στρογγυλές γωνίες επάνω */
+}
+
+.card-banner .img-cover {
+  width: 100%;
+  height: auto; /* Προσαρμογή ύψους εικόνας */
+  object-fit: cover; /* Κάλυψη του διαθέσιμου χώρου */
+  transition: transform 0.3s ease; /* Ομαλή μετάβαση εφέ εικόνας */
+}
+
+.blog-card:hover .img-cover {
+  transform: scale(1.1); /* Ελαφρύ zoom στην εικόνα κατά hover */
+}
+
+.card-content {
+  padding: 20px; /* Εσωτερικό padding για το περιεχόμενο */
+  text-align: center; /* Κεντράρισμα του κειμένου */
+}
+
+.card-content h3 {
+  font-size: 2rem; /* Μεγαλύτερο μέγεθος τίτλου */
+  font-weight: 600; /* Έντονη γραμματοσειρά */
+  color: #333; /* Σκούρο γκρι χρώμα τίτλου */
+  margin: 10px 0; /* Απόσταση πάνω και κάτω από τον τίτλο */
+  transition: color 0.3s ease; /* Ομαλή μετάβαση χρώματος */
+}
+
+.card-content h3 a {
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  color: inherit; /* Χρώμα κειμένου κληρονομημένο από το γονικό στοιχείο */
+}
+
+.card-content h3 a:hover {
+  color: #ff6f00; /* Ζεστό πορτοκαλί χρώμα κατά hover */
+  text-decoration: underline; /* Υπογράμμιση τίτλου κατά hover */
+}
+
+.card-meta-list {
+  display: flex;
+  justify-content: center; /* Κεντράρισμα των meta στοιχεία */
+  gap: 20px; /* Απόσταση μεταξύ των στοιχείων */
+  margin-top: 10px; /* Απόσταση πάνω από τα meta στοιχεία */
+}
+
+.card-meta-item {
+  color: #666; /* Ελαφρύ γκρι χρώμα για τα meta στοιχεία */
+  font-size: 1.4rem; /* Μεγαλύτερο μέγεθος γραμματοσειράς */
+  font-weight: 400; /* Κανονικό βάρος γραμματοσειράς */
+}
+
+.card-meta-item:not(:last-child)::after {
+  content: '•'; /* Χρησιμοποιήστε κουκκίδα για διαχωρισμό */
+  margin-inline: 10px; /* Απόσταση γύρω από την κουκκίδα */
+  color: #999; /* Ελαφρύ γκρι χρώμα κουκκίδας */
+}
+
+.card-meta-text {
+  color: #333; /* Σκούρο γκρι χρώμα κειμένου */
+  font-size: 1.4rem; /* Μεγαλύτερο μέγεθος κειμένου */
+}
+
+.card-meta-text:hover {
+  color: #ff6f00; /* Ζεστό πορτοκαλί χρώμα κατά hover */
+}
+
+.blog .btn-more {
+  display: inline-block;
+  margin-top: 40px; /* Απόσταση πάνω από την λίστα άρθρων */
+  padding: 12px 24px; /* Εσωτερικό padding */
+  font-size: 1.4rem; /* Μέγεθος γραμματοσειράς */
+  font-weight: 600; /* Έντονη γραμματοσειρά */
+  color: #fff; /* Λευκό κείμενο */
+  background-color: #ff6f00; /* Ζεστό πορτοκαλί φόντο */
+  border: none; /* Αφαίρεση περιγράμματος */
+  border-radius: 8px; /* Στρογγυλές γωνίες */
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Ομαλές μεταβάσεις */
+}
+
+.blog .btn-more:hover {
+  background-color: #e65c00; /* Σκούρο πορτοκαλί κατά hover */
+  transform: scale(1.05); /* Ελαφρύ zoom του κουμπιού κατά hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------*\
+  #FOOTER
+\*-----------------------------------*/
+
+.footer {
+  background-color: #003366;; /* Σκούρο γκρι φόντο για καλύτερη αντίθεση */
+  color: #f5f5f5; /* Ανοιχτό γκρι κείμενο για καλή αναγνωσιμότητα */
+  padding: 20px 15px; /* Padding για το footer */
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Gap για τα στοιχεία */
+  margin-bottom: 20px; /* Απόσταση κάτω από το footer-top */
+}
+
+.footer-brand {
+  text-align: center;
+}
+
+.footer-brand .logo {
+  font-size: 2.5rem; /* Μεγαλύτερο μέγεθος λογοτύπου */
+  font-weight: 700; /* Έντονη γραμματοσειρά */
+  color: #ffffff; /* Ζεστό πορτοκαλί χρώμα για το λογότυπο */
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  margin-bottom: 15px; /* Απόσταση κάτω από το λογότυπο */
+}
+
+.footer-brand ul {
+  list-style: none; /* Αφαίρεση bullet points */
+  padding: 0; /* Αφαίρεση padding */
+  margin: 0; /* Αφαίρεση margin */
+}
+
+.footer-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Gap μεταξύ εικονιδίων και κειμένου */
+  margin-bottom: 15px; /* Απόσταση κάτω από κάθε στοιχείο */
+}
+
+.footer-list-item ion-icon {
+  font-size: 1.8rem; /* Μεγαλύτερο μέγεθος εικονίδων */
+  color: #ffffff; /* Ζεστό πορτοκαλί χρώμα για τα εικονίδια */
+}
+
+.footer-list-item a {
+  color: #f5f5f5; /* Ανοιχτό γκρι χρώμα κειμένου */
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  font-size: 2.0rem; /* Μεγαλύτερο μέγεθος γραμματοσειράς για τηλέφωνο και email */
+  transition: color 0.3s ease; /* Ομαλή μετάβαση χρώματος */
+}
+
+.footer-list-item a:hover {
+  color: #ffab91; /* Ανοιχτό πορτοκαλί χρώμα κατά hover */
+}
+
+.footer-bottom {
+  border-top: 1px solid #444; /* Ελαφρύ διαχωριστικό στην κορυφή του footer-bottom */
+  padding-top: 10px; /* Απόσταση πάνω από το περιεχόμενο */
+  text-align: center;
+}
+
+.copyright {
+  font-size: 1.6rem; /* Μεγαλύτερο μέγεθος γραμματοσειράς για το κείμενο πνευματικών δικαιωμάτων */
+  color: #b0bec5; /* Ελαφρύ γκρι μπλε χρώμα για το κείμενο πνευματικών δικαιωμάτων */
+  margin-bottom: 10px; /* Απόσταση κάτω από το κείμενο πνευματικών δικαιωμάτων */
+}
+
+.copyright-link {
+  color: #ff5722; /* Ζεστό πορτοκαλί χρώμα για το σύνδεσμο */
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  font-weight: 600; /* Έντονη γραμματοσειρά */
+}
+
+.copyright-link:hover {
+  text-decoration: underline; /* Υπογράμμιση συνδέσμου κατά hover */
+}
+
+
+
+
+
+
+/*-----------------------------------*\
+  #BACK TO TOP
+\*-----------------------------------*/
+
+.back-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--tan-crayola);
+  color: var(--white);
+  font-size: 24px;
+  padding: 18px;
+  border-radius: 50%;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-1);
+}
+
+.back-top-btn.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-10px);
+}
+
+@media (min-width: 575px) {
+
+  /**
+   * REUSED STYLE
+   */
+
+  .container {
+    max-width: 575px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .grid-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+  }
+
+  .grid-list > li:last-child {
+    grid-column: span 2;
+    max-width: calc(50% - 12.5px);
+    width: 100%;
+    margin-inline: auto;
+  }
+
+
+
+
+/**
+ * responsive for large than 768px screen
+ */
+
+@media (min-width: 768px) {
+
+  /**
+   * REUSED STYLE
+   */
+
+  .container { max-width: 768px; }
+
+
+
+
+
+
+
+/**
+ * responsive for large than 992px screen
+ */
+
+@media (min-width: 992px) {
+
+  /**
+   * REUSED STYLE
+   */
+
+  .container { max-width: 992px; }
+
+  .grid-list > li:last-child { all: unset; }
+
+  .grid-list { grid-template-columns: repeat(3, 1fr); }
+
+
+
+
+
+/**
+ * responsive for large than 1200px screen
+ */
+
+@media (min-width: 1200px) {
+
+  /**
+   * CUSTOM PROPERTY
+   */
+
+  :root {
+
+    /**
+     * typography
+     */
+
+    --fs-2: 3.6rem;
+
+  }
+
+
+
+  /**
+   * REUSED STYLE
+   */
+
+  .container { max-width: 1200px; }
+
+
+
+  /**
+   * PRODUCT
+   */
+
+  .product-list { grid-template-columns: repeat(4, 1fr); }
+
+}
